@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
+            $table->dateTime('data_emissao');
+            $table->boolean('is_actived');
             $table->timestamps();
         });
     }

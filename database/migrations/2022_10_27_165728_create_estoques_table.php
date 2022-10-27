@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('estoques', function (Blueprint $table) {
             $table->id();
+            $table->double("quantidade");
+            $table->double("preco_medio");  
             $table->timestamps();
         });
     }

@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('detalhe_compras', function (Blueprint $table) {
             $table->id();
+            $table->double("quantidade");
+            $table->double("valor_unitario");  
+            $table->double("valor_total");
             $table->timestamps();
         });
     }
