@@ -19,6 +19,10 @@ return new class extends Migration
             $table->double("valor_unitario");  
             $table->double("valor_total");  
             $table->timestamps();
+            $table->integer('pedido_id')->unsigned();
+            $table->foreign('pedido_id')->references('id')->on('pedidos');
+            $table->integer('produto_id')->unsigned();
+            $table->foreign('produto_id')->references('id')->on('produtos');
         });
     }
 
@@ -29,6 +33,8 @@ return new class extends Migration
      */
     public function down()
     {
+        $table->dropForeign('produto_id');
+        $table->dropForeign('pedido_id');
         Schema::dropIfExists('detalhes_pedidos');
     }
 };

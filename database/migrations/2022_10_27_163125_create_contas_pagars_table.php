@@ -23,6 +23,10 @@ return new class extends Migration
             $table->double('valor_baixado');
             $table->double('valor_em_aberto');            
             $table->timestamps();
+            $table->integer('plano_conta_id')->unsigned();
+            $table->foreign('plano_conta_id')->references('id')->on('plano_contas');
+            $table->integer('pessoa_id')->unsigned();
+            $table->foreign('pessoa_id')->references('id')->on('pessoas');
         });
     }
 
@@ -33,6 +37,8 @@ return new class extends Migration
      */
     public function down()
     {
+        $table->dropForeign('pessoa_id');
+        $table->dropForeign('plano_conta_id');
         Schema::dropIfExists('contas_pagars');
     }
 };

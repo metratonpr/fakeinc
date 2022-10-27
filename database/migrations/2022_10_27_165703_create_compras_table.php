@@ -18,6 +18,8 @@ return new class extends Migration
             $table->dateTime('data_emissao');
             $table->boolean('is_actived');
             $table->timestamps();
+            $table->integer('fornecedor_id')->unsigned();
+            $table->foreign('fornecedor_id')->references('id')->on('pessoas');
         });
     }
 
@@ -28,6 +30,7 @@ return new class extends Migration
      */
     public function down()
     {
+        $table->dropForeign('fornecedor_id');
         Schema::dropIfExists('compras');
     }
 };

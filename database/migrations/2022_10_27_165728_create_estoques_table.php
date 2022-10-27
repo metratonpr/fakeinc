@@ -18,6 +18,8 @@ return new class extends Migration
             $table->double("quantidade");
             $table->double("preco_medio");  
             $table->timestamps();
+            $table->integer('produto_id')->unsigned();
+            $table->foreign('produto_id')->references('id')->on('produtos');
         });
     }
 
@@ -28,6 +30,7 @@ return new class extends Migration
      */
     public function down()
     {
+        $table->dropForeign('produto_id');
         Schema::dropIfExists('estoques');
     }
 };

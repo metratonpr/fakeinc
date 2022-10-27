@@ -18,6 +18,9 @@ return new class extends Migration
             $table->dateTime('data_emissao');     
             $table->boolval('is_actived');
             $table->timestamps();
+            $table->integer('cliente_id')->unsigned();
+            $table->foreign('cliente_id')->references('id')->on('pessoas');
+
         });
     }
 
@@ -28,6 +31,8 @@ return new class extends Migration
      */
     public function down()
     {
+        $table->dropForeign('cliente_id');
+
         Schema::dropIfExists('pedidos');
     }
 };

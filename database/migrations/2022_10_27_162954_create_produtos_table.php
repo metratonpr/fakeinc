@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string("nome");            
             $table->timestamps();
+            $table->integer('grupo_produto_id')->unsigned();
+            $table->foreign('grupo_produto_id')->references('id')->on('grupo_produtos');
         });
     }
 
@@ -27,6 +29,7 @@ return new class extends Migration
      */
     public function down()
     {
+        $table->dropForeign('grupo_produto_id');
         Schema::dropIfExists('produtos');
     }
 };

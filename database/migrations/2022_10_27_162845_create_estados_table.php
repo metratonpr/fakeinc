@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('longitude');
             $table->bigInteger('codigo_ibge');
             $table->timestamps();
+            $table->integer('pais_id')->unsigned();
+            $table->foreign('pais_id')->references('id')->on('paises');
         });
     }
 
@@ -30,6 +32,7 @@ return new class extends Migration
      */
     public function down()
     {
+        $table->dropForeign('pais_id');
         Schema::dropIfExists('estados');
     }
 };

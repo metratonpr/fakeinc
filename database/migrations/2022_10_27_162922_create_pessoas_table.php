@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nome')->unique();
             $table->bigInteger('cpf');
             $table->timestamps();
+            $table->integer('cidade_id')->unsigned();
+            $table->foreign('cidade_id')->references('id')->on('cidades');
         });
     }
 
@@ -28,6 +30,7 @@ return new class extends Migration
      */
     public function down()
     {
+        $table->dropForeign('estado_id');
         Schema::dropIfExists('pessoas');
     }
 };
